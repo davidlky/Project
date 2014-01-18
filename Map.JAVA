@@ -18,7 +18,7 @@ public class Map extends SWorld
     private Player player = new Player();
     private int stage;//stage number
     private boolean paused = false; //is the game paused
-    
+
     /**
      * When everything is first loaded up, changes the screen to the Title Screen
      */
@@ -27,7 +27,7 @@ public class Map extends SWorld
         super(720, 480, 1, 1855 ,3700); 
         Greenfoot.setWorld(new Screen(2));
     }
-    
+
     /**
      * Starts a map with the asked file and adds the player's x and y location
      * 
@@ -45,7 +45,7 @@ public class Map extends SWorld
         loadMap();
         addObject(new HUD(),720/2,20);
     }
-    
+
     /**
      * Loads up the map with the given array of chars
      */
@@ -73,16 +73,22 @@ public class Map extends SWorld
                     case '6':
                     addObject (new Tile(6),48*y+24,48*x+24);                    
                     break;
-                    case 'd'://door type 1 - faces left
-                    addObject(new Door(stage, 1), 48*y+24,48*x);                        
-                    case 'p'://door type 2 - faces right
+                    case 'u'://door type 1 - faces left
+                    addObject(new Door(stage, 1), 48*y+24,48*x);    
+                    break;
+                    case 'i'://door type 1 - faces right
                     addObject(new Door(stage, 2), 48*y+24,48*x);   
                     break;
+                    case 'o'://door type 2 - faces left
+                    addObject(new Door(stage, 3), 48*y+24,48*x);   
+                    break;
+                    case 'p'://door type 2 - faces right
+                    addObject(new Door(stage, 4), 48*y+24,48*x);   
                 }
             }
         }
     }
-    
+
     /**
      * Reads the txt file for the map, will report if file is invalid(not found)
      * 
@@ -128,21 +134,21 @@ public class Map extends SWorld
     public void setPause(boolean input){
         paused = input;
     }
-    
+
     /**
      * @return The player's X location
      */
     public int getPlayerX(){
         return player.getX();
     }
-    
+
     /**
      * @return The player's Y location
      */
     public int getPlayerY(){
         return player.getY();
     }
-    
+
     /**
      * Return the player itself
      */
